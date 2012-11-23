@@ -59,7 +59,7 @@ module Scandium
     # Adds a resource to the acl system
     # @argument resource [Scandium::Resource]
     def add_resource(resource)
-      resources[resource.resource_id] = resource
+      resources[resource.id] = resource
     end
     
     # Defines an authorized rule for the acl system
