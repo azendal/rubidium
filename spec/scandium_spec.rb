@@ -26,14 +26,14 @@ context "Scandium" do
   end
   
   describe ":: Role" do
-    it "should expose role_id from the initialization process" do
-      Scandium::Role.new(:user).role_id.should == :user
+    it "should expose id from the initialization process" do
+      Scandium::Role.new(:user).id.should == :user
     end
   end
   
   describe ":: Resource" do
-    it "should expose resource_id from the initialization process" do
-      Scandium::Resource.new(:record).resource_id.should == :record
+    it "should expose id from the initialization process" do
+      Scandium::Resource.new(:record).id.should == :record
     end
   end
   
@@ -126,7 +126,7 @@ context "Scandium" do
         role = Scandium::Role.new :user
         role2 = Scandium::Role.new :user
         acl.add_role role
-        lambda { acl.add_role(role2) }.should raise_error "Role #{role2.role_id} is already defined"
+        lambda { acl.add_role(role2) }.should raise_error "Role #{role2.id} is already defined"
       end
       
       it "should raise an exeption when adding a role not instance of Scandium::Role" do

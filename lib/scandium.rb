@@ -39,8 +39,8 @@ module Scandium
     # @argument parents [Array] []
     def add_role(role, parents = [])
       raise "Role #{role} is not an instance of Scandium::Role instead is #{role.class}" unless role.is_a?(Scandium::Role) 
-      id = role.role_id
-      raise "Role #{role.role_id} is already defined" if roles[id]
+      id = role.id
+      raise "Role #{role.id} is already defined" if roles[id]
       
       roles[id] = {
         :instance => role,
@@ -52,7 +52,7 @@ module Scandium
         raise "Role #{parent_role} does not exists" unless roles[parent_role]
         
         roles[id][:parents].unshift roles[parent_role][:instance]
-        roles[parent_role][:children] << roles[id]
+        roles[parent_role][:children] << roles[id][:instance]
       end
     end
     
@@ -98,7 +98,7 @@ module Scandium
         rules[:all_resources][role][:all_privileges] rescue nil
       
       roles[role][:parents].each do |parent_role|
-        rule = get_rule(action, resource, parent_role.role_id)
+        rule = get_rule(action, resource, parent_role.id)
         break if rule
       end if !rule && roles[role]
       
@@ -125,16 +125,16 @@ module Scandium
   end
   
   class Role
-    attr_reader :role_id
+    attr_reader :id
     def initialize(id)
-      @role_id = id.to_sym
+      @id = id.to_sym
     end
   end
   
   class Resource
-    attr_reader :resource_id
+    attr_reader :id
     def initialize(id)
-      @resource_id = id.to_sym
+      @id = id.to_sym
     end
   end
 end
