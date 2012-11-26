@@ -4,10 +4,10 @@ module Scandium
     WHITE_LIST = :white_list
     
     # holds the value for a black list type of acl
-    BLACK_LIST = :black_list
+    BLACK_LIST = 'TYPE_DENY'
     
     # holds the type of value that an allow rule has
-    TYPE_ALLOW = :allow
+    TYPE_ALLOW = 'TYPE_ALLOW'
     
     # holds the type of value that a deny rule has
     TYPE_DENY  = :deny
